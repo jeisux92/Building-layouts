@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/widgets/favorite.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -19,19 +20,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   Widget titleSection = Container(
     padding: const EdgeInsets.all(32),
     child: Row(
@@ -60,12 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        /*3*/
-        Icon(
-          Icons.star,
-          color: Colors.red[500],
-        ),
-        Text('41'),
+        FavoriteWidget()
       ],
     ),
   );
@@ -75,7 +58,11 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, color: color),
+        IconButton(
+          icon: Icon(icon),
+          color: color,
+          onPressed: () {},
+        ),
         Container(
           margin: const EdgeInsets.only(top: 8),
           child: Text(
@@ -106,14 +93,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget textSection = Container(
     padding: const EdgeInsets.all(32),
-    child: Text(
-      'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-      'Alps. Situated 1,578 meters above sea level, it is one of the '
-      'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
-      'half-hour walk through pastures and pine forest, leads you to the '
-      'lake, which warms to 20 degrees Celsius in the summer. Activities '
-      'enjoyed here include rowing, and riding the summer toboggan run.',
-      softWrap: true,
+    child: Column(
+      children: <Widget>[
+        Text(
+          'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+          'Alps. Situated 1,578 meters above sea level, it is one of the '
+          'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+          'half-hour walk through pastures and pine forest, leads you to the '
+          'lake, which warms to 20 degrees Celsius in the summer. Activities '
+          'enjoyed here include rowing, and riding the summer toboggan run.',
+          softWrap: true,
+        ),
+        Switch(
+          value: true,
+          onChanged: (bool value) {},
+        )
+      ],
     ),
   );
 
@@ -146,11 +141,6 @@ class _MyHomePageState extends State<MyHomePage> {
           textSection,
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
